@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import './App.css';
+import styles from './App.module.css';
 import { Cards,Chart,CountryPicker} from './components/index'
 import {fetchData,fetchDailyData,fetchCountries} from './api/index'
 
 function App() {
 
   const [apiData, setApiData] = useState({})
+  const [currentCountry,setCurrentCountry] = useState("india")
+
+  function handleCountryChange(country) {
+  console.log('going to set country as ',country)  
+  setCurrentCountry(country)
+}
   
   useEffect(() => {
   async function fetchMyApi() {  
@@ -18,11 +24,11 @@ function App() {
 
   
   return (
-    <div className="App">
+    <div className={styles.app}>
       { console.log('indi retutn',{apiData})}
       <Cards bulk = {apiData}/>
-      <CountryPicker/>
-      <Chart/>
+      <CountryPicker handleCountryChange= {handleCountryChange}/>
+      <Chart selectedCountry= {currentCountry}/>
     </div>
   );
 }

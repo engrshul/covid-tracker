@@ -29,6 +29,20 @@ export async function fetchCountries() {
    try {
      const {data} =await axios.get(url+ "countries")
      console.log('response of countries api call is',data)
+     return data
+  }
+  catch(error) {
+    return error;
+  }
+
+}
+
+export async function fetchSpecificCountryData(selectedCountry) {
+   try {
+     console.log('selected country in fetchSpecificCountryData func is',selectedCountry)
+     const {data} =await axios.get(url+ "countries/"+selectedCountry)
+     console.log('response of countries api call is',data)
+     return data
   }
   catch(error) {
     return error;
